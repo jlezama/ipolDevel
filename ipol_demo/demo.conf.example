@@ -9,6 +9,7 @@ input.thumbnail.size = 192               # thumbnail size
 #tools.proxy.on = True                   # proxy settings
 #tools.proxy.base = 'http://server/path/to/demo'
 #tools.proxy.local = ''
+#server.matlab_path = '/usr/local/MATLAB'
 
 ## development setup
 server.environment = 'development'
