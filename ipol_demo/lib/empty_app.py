@@ -206,9 +206,19 @@ class empty_app(object):
         newenv = os.environ.copy()
         # add local environment settings
         newenv.update(env)
+
         # TODO clear the PATH, hard-rewrite the exec arg0
         # TODO use shell-string execution
-        newenv.update({'PATH' : self.bin_dir})
+
+        # Here the available PATH is extended with
+        # env['PATH'], if it exists. Otherwise the PATH is only
+        # self.bin_dir
+
+        if 'PATH' in env:
+            newenv.update({'PATH' : self.bin_dir + ":" + env['PATH']})
+        else:
+            newenv.update({'PATH' : self.bin_dir})
+
         # run
         return Popen(args, stdin=stdin, stdout=stdout, stderr=stderr,
                      env=newenv, cwd=self.work_dir)
